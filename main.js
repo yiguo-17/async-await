@@ -37,8 +37,8 @@ let level = (levelNumber) => {
 
 let levelPower = (level) => {
   return new Promise((resolve, reject) => {
-    return 'advanced'? resolve({ hitPoints: 200, strength: 10 })
-      : 'intermediate'
+    (level=== 'advanced')? resolve({ hitPoints: 200, strength: 10 })
+      : (level ==='intermediate')
       ? resolve({ hitPoints: 100, strength: 7 })
       : resolve({ hitPoints: 70, strength: 4 });
   });
@@ -80,11 +80,11 @@ async function login(name){
     const user = await loginUser(name);
     const userLevel = await level(user.random);
     const userPower = await levelPower(userLevel);
-    console.log(userPower)
     console.log(`${user.name} is an ${userLevel} player with ${userPower.strength} strength and ${userPower.hitPoints} hit points.`)
   }
   catch(err) {console.log(err)}
 }
+login('albert')
 
 const fetch = require('node-fetch');
 const getUsersEmails  =  async function(url){
@@ -98,7 +98,7 @@ const getUsersEmails  =  async function(url){
   catch (err){console.log(err)}
 
 } 
-//getUsersEmails(url1);
+getUsersEmails(url1);
 
 const getFilms = async function(url){
   try{
